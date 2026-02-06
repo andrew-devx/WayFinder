@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WayFinder - NU Laguna Open Day Quiz</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Island Theme Colors */
+        
+        .bg-nu-navy {
+            background-color: #0f5f7f;
+        }
+        
+        .text-nu-gold {
+            color: #f4a460;
+        }
+        
+        .bg-nu-gold {
+            background-color: #f4a460;
+        }
+        
+        .border-nu-gold {
+            border-color: #f4a460;
+        }
+        
+        .hover-nu-gold:hover {
+            border-color: #f4a460;
+            background-color: rgba(244, 164, 96, 0.1);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a7fbf 0%, #1eb5d0 50%, #7ecfd9 100%);
+            min-height: 100vh;
+        }
+        /* Smooth transitions for question changes */
+        
+        .question-slide {
+            animation: slideIn 0.4s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        /* Button tap feedback */
+        
+        .btn-answer {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-answer:active {
+            transform: scale(0.98);
+        }
+        
+        .btn-answer:hover {
+            transform: translateY(-2px);
+        }
+        /* Progress bar animation */
+        
+        .progress-fill {
+            transition: width 0.5s ease-out;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div id="app" class="w-full max-w-lg"></div>
+    <script src="algo.js"></script>
+</body>
+
+</html>

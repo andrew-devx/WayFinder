@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WayFinder - NU Laguna Open Day 2026</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Remove scrollbar */
+        
+         ::-webkit-scrollbar {
+            display: none;
+        }
+        
+        html {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Island Theme Colors */
+        
+        .bg-nu-navy {
+            background-color: #0f5f7f;
+        }
+        
+        .text-nu-gold {
+            color: #f4a460;
+        }
+        
+        .bg-nu-gold {
+            background-color: #f4a460;
+        }
+        
+        .border-nu-gold {
+            border-color: #f4a460;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: linear-gradient(135deg, #0a7fbf 0%, #1eb5d0 50%, #7ecfd9 100%);
+            min-height: 100vh;
+            overflow: auto;
+            /* allow scrolling while still hiding the scrollbar visuals */
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 40px;
+        }
+        
+        .text-nu-navy {
+            color: #0f5f7f;
+        }
+        /* Tropical Island Theme */
+        
+        .tropical-bg {
+            background: linear-gradient(180deg, #0a7fbf 0%, #1eb5d0 50%, #7ecfd9 100%);
+            position: relative;
+            min-height: 100vh;
+        }
+        /* Wave animation */
+        
+        .wave {
+            animation: wave 3s ease-in-out infinite;
+            transform-origin: center;
+        }
+        
+        @keyframes wave {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        /* Fade in animation */
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Button hover effects */
+        
+        .btn-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-hover:active {
+            transform: scale(0.98);
+        }
+        /* Card hover effects */
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+        }
+        /* Glow effect */
+        
+        .glow-gold {
+            text-shadow: 0 0 20px rgba(244, 164, 96, 0.6);
+        }
+        /* Responsive text */
+        
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+        }
+        /* Tighten layout for very small phones to avoid vertical scrolling */
+        
+        @media (max-width: 420px) {
+            .min-h-screen {
+                min-height: auto !important;
+            }
+            .w-full.max-w-2xl {
+                max-width: 96% !important;
+            }
+            .min-h-screen .fade-in {
+                padding-top: 8px !important;
+                padding-bottom: 8px !important;
+            }
+            .hero-title {
+                font-size: 1.6rem !important;
+            }
+            .hero-subtitle {
+                font-size: 0.95rem !important;
+            }
+            .card-hover {
+                padding: 0.9rem !important;
+            }
+            .p-8 {
+                padding: 0.9rem !important;
+            }
+            .p-6 {
+                padding: 0.7rem !important;
+            }
+            .grid.grid-cols-2 {
+                grid-template-columns: 1fr !important;
+            }
+            .text-4xl {
+                font-size: 1.6rem !important;
+            }
+            .text-2xl {
+                font-size: 1rem !important;
+            }
+            .space-y-8 {
+                gap: 0.75rem !important;
+            }
+            .space-y-6 {
+                gap: 0.6rem !important;
+            }
+            .space-y-4 {
+                gap: 0.5rem !important;
+            }
+            /* make footer compact */
+            .text-center.pb-4 {
+                padding-bottom: 12px !important;
+            }
+            /* ensure sticky CTA shows only on small screens */
+            .sticky-cta {
+                display: block;
+            }
+        }
+        /* Hide sticky CTA on medium+ screens */
+        
+        @media (min-width: 641px) {
+            .sticky-cta {
+                display: none;
+            }
+        }
+        /* Sticky CTA (always visible) */
+        
+        .sticky-cta {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 60;
+            pointer-events: auto;
+        }
+        
+        .sticky-cta button {
+            padding: 0.45rem 0.9rem;
+            border-radius: 9999px;
+            box-shadow: 0 10px 16px rgba(0, 0, 0, 0.16);
+            font-size: 0.95rem;
+            line-height: 1;
+            min-width: 140px;
+        }
+        /* Landing hero with background image blend */
+        
+        .landing-hero {
+            background-image: linear-gradient(rgba(10, 127, 191, 0.20), rgba(126, 207, 217, 0.20));
+            background-size: cover;
+            background-position: center top;
+            border-radius: 1rem;
+            padding: 0.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .landing-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('NU-Laguna-copy.jpg');
+            background-size: cover;
+            background-position: center top;
+            opacity: 0.20;
+            /* 20% image opacity */
+            mix-blend-mode: multiply;
+            z-index: 0;
+            border-radius: inherit;
+            pointer-events: none;
+        }
+        /* Ensure hero content appears above the image layer */
+        
+        .landing-hero>* {
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (min-width: 768px) {
+            .landing-hero {
+                padding: 1.25rem;
+            }
+        }
+        /* Make sure hero content has readable text */
+        
+        .landing-hero .hero-title,
+        .landing-hero .hero-subtitle,
+        .landing-hero p {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        }
+    </style>
+</head>
+
+<body class="tropical-bg">
+    <div class="min-h-screen flex flex-col items-center justify-center px-6 py-10 sm:px-8 sm:py-12 md:px-4 md:py-8">
+        <!-- Main Container -->
+        <div class="w-full max-w-2xl space-y-8 fade-in">
+
+            <!-- Header Section -->
+            <div class="landing-hero">
+                <div class="text-center space-y-4 p-6 md:p-8">
+                    <!-- Logo/Branding -->
+                    <div class="mb-6">
+                        <h1 class="hero-title text-4xl md:text-5xl font-bold text-white mb-2 glow-gold">
+                            🏝️ WayFinder
+                        </h1>
+                        <p class="text-nu-gold text-xl font-semibold">NU Laguna Open Day 2026</p>
+                    </div>
+
+                    <!-- Welcome Message -->
+                    <div class="space-y-3">
+                        <h2 class="hero-subtitle text-2xl md:text-3xl font-bold text-white">
+                            Hello, NUvigators!
+                        </h2>
+                        <p class="text-white/90 text-lg md:text-xl leading-relaxed">
+                            Aloha! We welcome you to <span class="text-nu-gold font-bold">National University Laguna</span>, where excellence meets opportunity!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Section -->
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-8 border border-nu-gold/30 space-y-4 card-hover">
+                <h3 class="text-2xl font-bold text-nu-gold">About NU Laguna</h3>
+                <p class="text-white/90 leading-relaxed">
+                    NU Laguna prepares students for high-demand careers through hands-on learning, industry-aligned curriculum, and strong employer partnerships. Our Calamba campus combines modern facilities with focused student support so you graduate job-ready.
+                </p>
+                <div class="space-y-2 text-white/80 text-sm">
+                    <p>🔧 <strong>Hands-on Learning</strong> — Build real projects, labs, and internships that grow your portfolio</p>
+                    <p>👩‍🏫 <strong>Personalized Mentorship</strong> — Small class sizes and faculty who mentor your career path</p>
+                    <p>🤝 <strong>Industry Connections</strong> — Direct internship and hiring pipelines with partner employers</p>
+                    <p>🎓 <strong>Student Support</strong> — Scholarships, advising, and career services to help you succeed</p>
+                </div>
+            </div>
+
+            <!-- Programs Preview -->
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-8 border border-nu-gold/30 space-y-4 card-hover">
+                <h3 class="text-2xl font-bold text-nu-gold">Our Programs</h3>
+                <p class="text-white/90">NU Laguna offers a variety of programs designed to turn your passion into a career. From Business and Accountancy to Computing, Arts, Sciences, and Engineering, our programs combine expert faculty, hands-on experience, and real-world opportunities
+                    to prepare you for success.</p>
+
+                <div class="space-y-3">
+                    <h4 class="text-lg font-semibold text-nu-gold">Schools & Highlights:</h4>
+                    <div class="space-y-2 text-white/90">
+                        <div class="flex items-start gap-3">
+                            <span class="text-lg">📊</span>
+                            <p><strong>SABM</strong> – Develop future leaders in business and accounting.</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-lg">💻</span>
+                            <p><strong>SCS</strong> – Shape your skills in computing and technology.</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-lg">🎨</span>
+                            <p><strong>SAS</strong> – Explore creativity, arts, and human sciences.</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-lg">�️</span>
+                            <p><strong>SEA</strong> – Build innovation in engineering and architecture.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-white/80 italic border-t border-white/20 pt-4">"Find the program that fits your passion and start shaping your future today."</p>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="text-center space-y-6">
+                <h3 class="text-2xl font-bold text-white">
+                    Ready to Find Your Path?
+                </h3>
+
+                <!-- Main CTA Button -->
+                <a href="quiz.html" class="inline-block">
+                    <button id="ctaStart" class="btn-hover bg-nu-gold hover:bg-yellow-500 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-2xl ring-4 ring-nu-navy/20 focus:outline-none focus:ring-offset-2">
+                        Start WayFinder Quiz 🚀
+                    </button>
+                </a>
+
+                <p class="text-white/90 text-sm">
+                    Take a 10-question quiz — get an actionable match (program + organization) and next-step guidance.
+                </p>
+            </div>
+
+            <!-- Why NU Laguna Section -->
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-8 border border-nu-gold/30 space-y-4 card-hover">
+                <h3 class="text-2xl font-bold text-nu-gold">Why Choose NU Laguna?</h3>
+                <div class="space-y-3 text-white/90">
+                    <div class="flex items-start gap-3">
+                        <span class="text-2xl">🌟</span>
+                        <p><strong>Faculty Who Mentor</strong> — Learn from instructors who connect you to real projects and employers</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-2xl">🏗️</span>
+                        <p><strong>Hands-On Facilities</strong> — Labs and maker spaces where you build portfolio-ready work</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-2xl">🌐</span>
+                        <p><strong>Recognized Programs</strong> — Accredited degrees employers trust</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-2xl">👥</span>
+                        <p><strong>Connected Community</strong> — Clubs and orgs that build leadership, networks, and practical skills</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-2xl">💼</span>
+                        <p><strong>Career Outcomes</strong> — Internship placements and career coaching to help you launch</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Section -->
+            <div class="text-center space-y-4 pb-4">
+                <p class="text-white/70 text-sm">
+                    Founded in 1900 | Education that Works
+                </p>
+                <div class="flex justify-center gap-4">
+                    <span class="inline-block w-3 h-3 rounded-full bg-nu-gold/50"></span>
+                    <span class="inline-block w-3 h-3 rounded-full bg-nu-gold/30"></span>
+                    <span class="inline-block w-3 h-3 rounded-full bg-nu-gold/50"></span>
+                </div>
+                <p class="text-nu-gold font-semibold">
+                    Join the NU Bulldog Family! 🏆
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <!-- Sticky CTA so users don't need to scroll for the quiz -->
+    <div class="sticky-cta">
+        <a href="quiz.html" aria-label="Start WayFinder Quiz">
+            <button id="ctaSticky" class="btn-hover bg-nu-gold hover:bg-yellow-500 text-white font-semibold rounded-full text-sm shadow-2xl ring-4 ring-nu-navy/20 focus:outline-none focus:ring-offset-2">
+                Start WayFinder Quiz 🚀
+            </button>
+        </a>
+    </div>
+</body>
+
+</html>
